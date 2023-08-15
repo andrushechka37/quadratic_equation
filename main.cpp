@@ -6,7 +6,7 @@
 #include <ctype.h>
 int main(void) {
     double a, b, c, x, d;
-    printf("print a, b, c from ax^2 + bx + c = 0\n");  //ввод данных
+    printf("print a, b, c from ax^2 + bx + c = 0\n"); 
     printf("a = ");
     scanf("%lf", &a);
     printf("b = ");
