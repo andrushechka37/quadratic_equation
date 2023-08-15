@@ -17,7 +17,7 @@ int main(void) {
     if (a == 0) {
         if (b != 0) {
             x = (double) (-c / b);
-            printf("x1 = x2 = %lf", x);
+            printf("x1 = x2 = %.2lf", x);
         } else if (b == 0 && c == 0) {
             printf("an infinite number of solutions");
         } else {
@@ -29,12 +29,12 @@ int main(void) {
             printf("no valid solutions");
         } else if (d == 0) {
             x = (double) (-b / (2 * a));
-            printf("x1 = x2 = %lf", x);
+            printf("x1 = x2 = %.2lf", x);
         } else {
             x = (double) (-b + sqrt(d)) / (2 * a);
-            printf("x1 = %lf\n", x);
+            printf("x1 = %.2lf\n", x);
             x = (double) (-b - sqrt(d)) / (2 * a);
-            printf("x2 = %lf\n", x);
+            printf("x2 = %.2lf\n", x);
         }
     }
     return 0;
