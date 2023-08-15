@@ -18,8 +18,10 @@ int main(void) {
         if (b != 0) {
             x = (double) (-c / b);
             printf("x1 = x2 = %lf", x);
-        } else {
+        } else if (b == 0 && c == 0) {
             printf("an infinite number of solutions");
+        } else {
+            printf("no valid solutions");
         }
     } else {
         d = b * b - 4 * a * c;
