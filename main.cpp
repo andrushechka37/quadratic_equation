@@ -29,7 +29,6 @@ int main(void) {
         if ((d >= (-1 * epsilon)) && (d <= epsilon)) {
             x = (double) (-b / (2 * a));
             printf("x1 = x2 = %.2lf", x);
-            printf("no valid solutions");
         } else if (d < 0) {
             printf("no valid solutions");
         } else {
