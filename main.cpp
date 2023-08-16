@@ -6,7 +6,8 @@
 #include <ctype.h>
 int main(void) {
     double a, b, c, x, d;
-    printf("print a, b, c from ax^2 + bx + c = 0\n"); 
+    double epsilon = 0.00000000001;
+    printf("print a, b, c from ax^2 + bx + c = 0\n");
     printf("a = ");
     scanf("%lf", &a);
     printf("b = ");
@@ -25,11 +26,12 @@ int main(void) {
         }
     } else {
         d = b * b - 4 * a * c;
-        if (d < 0) {
-            printf("no valid solutions");
-        } else if (d == 0) {
+        if ((d >= (-1 * epsilon)) && (d <= epsilon)) {
             x = (double) (-b / (2 * a));
             printf("x1 = x2 = %.2lf", x);
+            printf("no valid solutions");
+        } else if (d < 0) {
+            printf("no valid solutions");
         } else {
             x = (double) (-b + sqrt(d)) / (2 * a);
             printf("x1 = %.2lf\n", x);
