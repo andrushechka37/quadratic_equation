@@ -1,21 +1,41 @@
 #include <stdio.h>
 #include <math.h>
 #include <ctype.h>
+#include <stdlib.h>
 void solve (double frst_coef, double sec_coef, double free_member);
+void get_coef(double *coef);
 int main(void) {
-
-
-    double frst_coef, sec_coef, free_member;
     printf("print a, b, c from ax^2 + bx + c = 0\n");
-    printf("a = ");
-    scanf("%lf", &frst_coef);
-    printf("b = ");
-    scanf("%lf", &sec_coef);
-    printf("c = ");
-    scanf("%lf", &free_member);
-
+    double frst_coef, sec_coef, free_member;
+    double *array[] = {&frst_coef, &sec_coef, &free_member};
+    for (int i = 0; i <= 2; i++) {
+        putchar(97 + i);
+        printf(" = ");
+        get_coef(array[i]);
+    }
     solve(frst_coef, sec_coef, free_member);
     return 0;
+}
+
+void get_coef(double *coef) {
+    char str [20];
+    char c;
+    int i = 0;
+    while (((c = getchar()) >= 48 && c <= 57) || c == 46 || c == 45) {
+        if (c == 45 && i != 0) {
+            printf("input error");
+            exit(-1);
+        }
+        str[i] = c;
+        i += 1;
+    }
+    if (c == '\n') {
+        *coef = atof(str);
+        return;
+    } else {
+        printf("input error");
+            exit(-1);
+    }
 }
 
 void solve (double frst_coef, double sec_coef, double free_member) {
