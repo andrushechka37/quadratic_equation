@@ -1,61 +1,43 @@
 #include <stdio.h>
-int const LIMIT = 20;
-double myself_atof(char str[]) {
-    int i = 0;
-    int sign = 0;
-    if (str[i] == '-') {
-        sign = -1;
-        i++;
-    } else {
-        sign = 1;
-    }
-    double number = 0;
-    while (str[i] != '.' && str[i] != '\0') {
-        number = (number * 10) + (str[i] - '0');
-        i++;
-    }
-    if (str[i] == '\0')
-        return number;
-    i++;
-    double power = 1;
-    while (str[i] != '\0') {
-        number = (number * 10) + (str[i] - '0');
-        power *= 10.0;
-        i++;
-    }
-    return ((sign * number) / power);
-
-}
 
 
-void get_coef(double *coef, bool *error_status) {
-    char str[LIMIT] = {0};
+
+
+void read_coef(double *coef, bool *error_status) {
     int simvol;
-    int i = 0;
     int point_count = 0;
-    while ((simvol = getchar()) != '\n') {
-        if (simvol == '-' && i != 0) {
-            *error_status = 1;
-        }
-
-        if (simvol == '.')
-            point_count++;
-        if (point_count == 2)
-            *error_status = 1;
-        if ((simvol >= '0' && simvol <= '9') || simvol == '.' || simvol == '-') {
-            str[i] = simvol;
-            i += 1;
-            continue;
-        }
+    double number = 0;
+    int sign = 1;
+    if ((simvol = getchar()) == '-') {
+        sign = -1;
+    } else if (isdigit(simvol) != 0) {
+        number = simvol - '0';
+    } else {
         *error_status = 1;
     }
-    if (*error_status != 1) {
-        *coef = myself_atof(str);
+
+while ((simvol = getchar()) != '\n' && simvol != '.') {
+    if (simvol == '-') {
+        *error_status = 1;
+    }
+
+    if (simvol == '.')
+        point_count++;
+    if (point_count == 2)
+        *error_status = 1;
+    number = (number * 10) + (simvol - '0');
+    }
+    if (simvol == '\n') {
+        *coef = sign * number;
         return;
     }
-    *error_status = 1;
+    double power = 1;
+    while ((simvol = getchar()) != '\n') {
+        number = (number * 10) + (simvol - '0');
+        power *= 10.0;
+    }
+    *coef = ((sign * number) / power);
 }
-
 
 
 
