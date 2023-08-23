@@ -2,8 +2,9 @@
 #include <math.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include "functions.h"
-
+#include "solve.h"
+#include "testing.h"
+#include "work_with_coef.h"
 
 int const LIMIT = 20;
 int const NO_ROOTS = -1;
@@ -13,7 +14,7 @@ int const INFINITE_ROOTS = 999;
 
 
 int main(void) {
-    /*printf("print a, b, c from ax^2 + bx + c = 0\n");
+    printf("print a, b, c from ax^2 + bx + c = 0\n");
 
     bool error_status = 0;
 
@@ -31,11 +32,7 @@ int main(void) {
     solve(coefs, &x1, &x2, &number_of_roots);
 
     print_solution(number_of_roots, x1, x2);
-<<<<<<< Updated upstream
     //test_solve();
-=======
-*/  test_programm;
->>>>>>> Stashed changes
 
     return 0;
 }
