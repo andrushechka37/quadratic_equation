@@ -1,46 +1,44 @@
 #include <stdio.h>
+#include <ctype.h>
 
 
 
-
-void read_coef(double *coef, bool *error_status) {
-    int simvol;
-    int point_count = 0;
+void read_coefficient(double *coef, bool *error_status) {
+    int symbol;
     double number = 0;
     int sign = 1;
-    if ((simvol = getchar()) == '-') {
+    if ((symbol = getchar()) == '-') {
         sign = -1;
-    } else if (isdigit(simvol) != 0) {
-        number = simvol - '0';
+    } else if (isdigit(symbol) != 0) { // TODO: can you getc/ungetc
+        number = symbol - '0';
     } else {
         *error_status = 1;
     }
 
-while ((simvol = getchar()) != '\n' && simvol != '.') {
-    if (simvol == '-') {
+// TODO: indent
+while ((symbol = getchar()) != '\n' && symbol != '.') { // TODO: extract
+    if (symbol == '-') {
         *error_status = 1;
     }
 
-    if (simvol == '.')
-        point_count++;
-    if (point_count == 2)
-        *error_status = 1;
-    number = (number * 10) + (simvol - '0');
-    }
-    if (simvol == '\n') {
+    number = (number * 10) + (symbol - '0');
+    } // TODO: align
+    if (symbol == '\n') { // TODO: what if I enter few spaces before or after?
         *coef = sign * number;
         return;
     }
     double power = 1;
-    while ((simvol = getchar()) != '\n') {
-        number = (number * 10) + (simvol - '0');
+    int point_count = 1;
+    while ((symbol = getchar()) != '\n') { // TODO: extract in a separate function
+        if (symbol == '.')
+            point_count++;
+        if (point_count == 2)
+            *error_status = 1;
+        number = (number * 10) + (symbol - '0');
         power *= 10.0;
     }
     *coef = ((sign * number) / power);
 }
-
-
-
 
 
 

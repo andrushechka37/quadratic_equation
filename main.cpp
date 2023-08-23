@@ -2,12 +2,12 @@
 #include <math.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include <functions.h>
+#include "functions.h"
 
 
 int const LIMIT = 20;
 int const NO_ROOTS = -1;
-
+int const INFINITE_ROOTS = 999;
 
 
 
@@ -31,7 +31,7 @@ int main(void) {
     solve(coefs, &x1, &x2, &number_of_roots);
 
     print_solution(number_of_roots, x1, x2);
-
+    //test_solve();
 
     return 0;
 }
@@ -42,19 +42,18 @@ void solve(double coefs[], double *x1, double *x2, int *number_of_roots) {
     if (comparison_with_zero(coefs[0]) == 0) {
         *number_of_roots = solve_linear_equation(coefs, x1);
     } else {
-        *number_of_roots = solve_quadratic_eqation(coefs, x1, x2);
+        *number_of_roots = solve_quadratic_equation(coefs, x1, x2);
     }
 }
 
 
 
-int solve_quadratic_eqation (double coefs[], double *x1, double *x2) {
+int solve_quadratic_equation (double coefs[], double *x1, double *x2) {
     double discriminant = coefs[1] * coefs[1] - 4 * coefs[0] * coefs[2];
     if (comparison_with_zero(discriminant) == 0) {
         *x1 = (double) (-coefs[1] / (2 * coefs[0]));
         return 1;
     } else if (discriminant < 0) {
-        *x1 = *x2 = NAN;
         return 0;
     } else {
         *x1 = (double) (-coefs[1] + sqrt(discriminant)) / (2 * coefs[0]);
@@ -70,7 +69,7 @@ int solve_linear_equation(double coefs[], double *x1) {
         *x1 = (double) (-coefs[2] / coefs[1]);
         return 1;
     } else if ((comparison_with_zero(coefs[1]) == 0) && (comparison_with_zero(coefs[2]) == 0)) {
-        return 999;
+        return INFINITE_ROOTS;
     } else {
         return 0;
     }
@@ -89,7 +88,7 @@ void print_solution(int number_of_roots, double x1, double x2) {
         case 2:
             printf("x1 = %.2lf\nx2 = %.2lf", x1, x2);
             break;
-        case 999:
+        case INFINITE_ROOTS:
             printf("an infinite number of solutions");
             break;
     }
@@ -118,9 +117,13 @@ void interactively_read_coefficients (double *coefs, bool *error_status) {
     for (int i = 0; i <= 2; i++) {
 	    putchar('a' + i);
         printf(" = ");
-        read_coef(coefs + i, error_status);
+        read_coefficient(coefs + i, error_status);
     }
 }
+
+
+
+
 
 
 
