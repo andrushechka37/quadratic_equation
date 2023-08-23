@@ -14,6 +14,7 @@ int const INFINITE_ROOTS = 999;
 
 
 int main(void) {
+    /*
     printf("print a, b, c from ax^2 + bx + c = 0\n");
 
     bool error_status = 0;
@@ -32,7 +33,8 @@ int main(void) {
     solve(coefs, &x1, &x2, &number_of_roots);
 
     print_solution(number_of_roots, x1, x2);
-    //test_solve();
+*/
+    test_solve();
 
     return 0;
 }
@@ -102,7 +104,7 @@ void print_solution(int number_of_roots, double x1, double x2) {
 
 
 int comparison_with_zero (double number) {
-    double epsilon = 1e-9;
+    double epsilon = 1e-5;
     if (fabs(number) <= 0)
         return 0;
     if (number > 0) {

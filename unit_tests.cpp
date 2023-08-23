@@ -1,18 +1,23 @@
 #include <stdio.h>
-#include "functions.h"
+#include "solve.h"
 #include <math.h>
+#include "work_with_coef.h"
 
-int const NO_ROOTS = -1;
 int const INFINITE_ROOTS = 999;
+int comparison_for_test(double number);
 
-void testing_one_case(double coefs[4][], double roots[4][]) {
+typedef struct test_case {double coefs[3]; double x1_ref; double x2_ref; int nroots_ref;} test_case;
+
+
+
+void testing_one_case(struct test_case all_cases, int *count) {
     double x1 = 0, x2 = 0;
     int nroots;
-    solve(coefs, &x1, &x2, &nroots);
-    if (comparison_with_zero(x1-roots[0]) != 0|| comparison_with_zero(x2-roots[1]) != 0 || nroots != (int) roots[2]) {
-        printf("Calculated: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n                 Expected: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n", x1, x2, nroots, roots[0], roots[1], (int) roots[2]);
+    solve(all_cases.coefs, &x1, &x2, &nroots);
+    if (comparison_for_test(x1-all_cases.x1_ref) != 0|| comparison_for_test(x2-all_cases.x2_ref) != 0 || nroots != all_cases.nroots_ref) {
+        printf("Calculated: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n  Expected: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n", x1, x2, nroots, all_cases.x1_ref, all_cases.x2_ref, all_cases.nroots_ref);
     } else {
-        printf("OK");
+        (*count)++;
     }
     return;
 }
@@ -24,15 +29,25 @@ void testing_one_case(double coefs[4][], double roots[4][]) {
 
 
 void test_solve(void) {
-
-    double testing_coeffivients[4][3] = {{0,0,0}, {0,0,7}, {2,21,3}, {-0.7, 20, -3.3}};
-    double roots[4][3] = {{0,0,INFINITE_ROOTS}, {0, 0, NO_ROOTS}, {-0.145, -10.355, 2}, {28,405, 0.166, 2}};
-    for (int i = 0; i <= 3; i++) {
-        testing_one_case(coefs[i][], roots[i][]);
+    test_case all_cases[6] = {
+        {{0,0,0}, 0, 0, INFINITE_ROOTS},
+        {{0,0,7}, 0, 0, 0},
+        {{2,21,3}, -0.145, -10.355, 2},
+        {{-0.7, 20, -3.3}, 0.166, 28.405, 2},
+        {{1,-3,2}, 2, 1, 2},
+        {{0,20,0}, 0, 0, 1}
+        };
+        int right_answer_count = 0;
+        for (int i = 0; i<= 5; i++) {
+            testing_one_case(all_cases[i], &right_answer_count);
+        }
+        printf("%d/6 correct answers", right_answer_count);
     }
 
 
-
-
-    return;
+int comparison_for_test(double number) {
+    if (fabs(number) < 0.001) {
+        return 0;
+    }
+    return 1;
 }
