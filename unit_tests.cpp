@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "solve.h"
 #include <math.h>
-#include "work_with_coef.h"
-
+#include "read_coefficient.h"
+#include "colours.h"
 
 #define ARRAY_SIZE(array) (sizeof(array) / sizeof(array[0]))
 
@@ -25,7 +25,7 @@ int test_one_case(struct test_case *all_cases) {
     int number_of_roots_from_solve = -1;
     solve(all_cases->coefs, &x1, &x2, &number_of_roots_from_solve);
     if (compare_for_test(x1 - all_cases->x1_ref) != 0|| compare_for_test(x2 - all_cases->x2_ref) != 0 || number_of_roots_from_solve != all_cases->nroots_ref) {
-        printf("\x1b[31mCalculated: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n  Expected: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n", x1, x2, number_of_roots_from_solve, all_cases->x1_ref, all_cases->x2_ref, all_cases->nroots_ref);
+        printf(RED"\x1b[31mCalculated: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n  Expected: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n", x1, x2, number_of_roots_from_solve, all_cases->x1_ref, all_cases->x2_ref, all_cases->nroots_ref);
         return 0;
     }
     return 1;
@@ -61,16 +61,16 @@ void test_solve(void) {
         }
 
         if (right_answer_count == 12) {
-            printf("\x1b[32m%d/%d correct answers", right_answer_count, NUMBER_OF_TESTS); // TODO: separate color in separate header
+            printf(GREEN"%d/%d correct answers", right_answer_count, NUMBER_OF_TESTS); // TODO: separate color in separate header
             return;                                                                       //       read about macros
         }
-        printf("\x1b[31m%d/%d correct answers", right_answer_count, NUMBER_OF_TESTS);
+        printf(RED"%d/%d correct answers", right_answer_count, NUMBER_OF_TESTS);
     }
 
 
 int compare_for_test(double number) {
-    if (fabs(number) < 0.001) {
-        return 0;  //  ^~~~~ eps? TODO: extract in a function
+    if (fabs(number) < spec_eps) {
+        return 0;
     }
     return 1;
 }
