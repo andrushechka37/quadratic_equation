@@ -25,3 +25,4 @@ solve.o: solve.cpp solve.h read_coefficient.h testing.h
 
 solve.o: unit_tests.cpp solve.h read_coefficient.h testing.h
 	clang++ -c unit_tests.cpp
+
