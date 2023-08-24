@@ -7,7 +7,6 @@
 #include "work_with_coef.h"
 
 int const LIMIT = 20;
-int const NO_ROOTS = -1;
 int const INFINITE_ROOTS = 999;
 
 

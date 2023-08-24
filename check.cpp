@@ -42,5 +42,14 @@ while ((symbol = getchar()) != '\n' && symbol != '.') { // TODO: extract
     *coef = ((sign * number) / power);
 }
 
+/*int symbol_processing(double *coef, bool *error_status) {
+    int symbol;
+    if ((symbol = getchar()) == '-') {
+        sign = -1;
+    } else {
+        ungetc()
+    }
+    while ((symbol = getc()) != '\n' && symbol != '.')
+}
 
-
+*/
