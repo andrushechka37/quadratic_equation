@@ -1,6 +1,7 @@
 
-pusk_user: main.o check.o solve.o
+start: main.o check.o solve.o
 	clang++ main.o check.o solve.o -o test
+	# TODO: make start should start, make build should build
 
 main.o: main.cpp solve.h work_with_coef.h
 	clang++ -c main.cpp
@@ -13,7 +14,7 @@ solve.o: solve.cpp solve.h work_with_coef.h testing.h
 
 
 
-pusk_test: main_test.o  solve.o unit_tests.o
+test: main_test.o  solve.o unit_tests.o
 	clang++ main_test.o  solve.o unit_tests.o -o test
 
 main_test.o: main_test.cpp solve.h work_with_coef.h testing.h

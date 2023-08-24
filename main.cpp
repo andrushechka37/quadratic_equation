@@ -10,7 +10,11 @@ int const INFINITE_ROOTS = 999;
 
 
 
-int main(void) {
+int main(int argc, const char *argv[]) {
+    // ./solve-equation -a=1 -b=2 -c=3
+    // argc = 4
+    // argv[] = { "./solve-equation", "-a=1", "-b=2", "-c=3" }
+
     printf("print a, b, c from ax^2 + bx + c = 0\n");
 
     bool error_status = 0;
