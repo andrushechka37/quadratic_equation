@@ -12,11 +12,15 @@
 int main(int argc, const char *argv[]) {
     // ./solve-equation -a=1 -b=2 -c=3
     // argc = 4
-    // argv[] = { "./solve-equation", "-a=1", "-b=2", "-c=3" }
-
+    // argv[] = { "./solve-equation", "1", "-b=2", "-c=3" }
+    bool error_status = 0; /*
+    int j = 0
+    while (argc > 1) {
+        read_coefficient(argv[j], *error_status);
+        argc--;
+    }
+    */
     printf("print a, b, c from ax^2 + bx + c = 0\n");
-
-    bool error_status = 0;
 
     double coefs[] = {0, 0, 0};
     interactively_read_coefficients(coefs, &error_status);

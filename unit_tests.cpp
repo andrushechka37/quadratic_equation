@@ -61,8 +61,8 @@ void test_solve(void) {
         }
 
         if (right_answer_count == 12) {
-            printf(GREEN"%d/%d correct answers", right_answer_count, NUMBER_OF_TESTS); // TODO: separate color in separate header
-            return;                                                                       //       read about macros
+            printf(GREEN"%d/%d correct answers", right_answer_count, NUMBER_OF_TESTS);
+            return;
         }
         printf(RED"%d/%d correct answers", right_answer_count, NUMBER_OF_TESTS);
     }

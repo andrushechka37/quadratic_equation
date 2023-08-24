@@ -2,10 +2,9 @@
 #include <math.h>
 #include "solve.h"
 #include "testing.h"
-#include "work_with_coef.h"
+#include "read_coefficient.h"
 
 
-int const INFINITE_ROOTS = 999;
 
 
 

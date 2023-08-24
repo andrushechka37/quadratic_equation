@@ -23,6 +23,6 @@ main_test.o: main_test.cpp solve.h read_coefficient.h testing.h
 solve.o: solve.cpp solve.h read_coefficient.h testing.h
 	clang++ -c solve.cpp
 
-solve.o: unit_tests.cpp solve.h read_coefficient.h testing.h
+unit_tests.o: unit_tests.cpp solve.h read_coefficient.h testing.h
 	clang++ -c unit_tests.cpp
 
