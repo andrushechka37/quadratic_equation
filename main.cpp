@@ -6,14 +6,12 @@
 #include "testing.h"
 #include "work_with_coef.h"
 
-int const LIMIT = 20;
 int const INFINITE_ROOTS = 999;
 
 
 
 
 int main(void) {
-    /*
     printf("print a, b, c from ax^2 + bx + c = 0\n");
 
     bool error_status = 0;
@@ -32,50 +30,12 @@ int main(void) {
     solve(coefs, &x1, &x2, &number_of_roots);
 
     print_solution(number_of_roots, x1, x2);
-*/
-    test_solve();
 
     return 0;
 }
 
 
 
-void solve(double coefs[], double *x1, double *x2, int *number_of_roots) {
-    if (comparison_with_zero(coefs[0]) == 0) {
-        *number_of_roots = solve_linear_equation(coefs, x1);
-    } else {
-        *number_of_roots = solve_quadratic_equation(coefs, x1, x2);
-    }
-}
-
-
-
-int solve_quadratic_equation (double coefs[], double *x1, double *x2) {
-    double discriminant = coefs[1] * coefs[1] - 4 * coefs[0] * coefs[2];
-    if (comparison_with_zero(discriminant) == 0) {
-        *x1 = (double) (-coefs[1] / (2 * coefs[0]));
-        return 1;
-    } else if (discriminant < 0) {
-        return 0;
-    } else {
-        *x1 = (double) (-coefs[1] + sqrt(discriminant)) / (2 * coefs[0]);
-        *x2 = (double) (-coefs[1] - sqrt(discriminant)) / (2 * coefs[0]);
-        return 2;
-    }
-}
-
-
-
-int solve_linear_equation(double coefs[], double *x1) {
-    if (comparison_with_zero(coefs[1]) != 0) {
-        *x1 = (double) (-coefs[2] / coefs[1]);
-        return 1;
-    } else if ((comparison_with_zero(coefs[1]) == 0) && (comparison_with_zero(coefs[2]) == 0)) {
-        return INFINITE_ROOTS;
-    } else {
-        return 0;
-    }
-}
 
 
 
@@ -99,19 +59,6 @@ void print_solution(int number_of_roots, double x1, double x2) {
 
 
 
-
-
-
-int comparison_with_zero (double number) {
-    double epsilon = 1e-5;
-    if (fabs(number) <= 0)
-        return 0;
-    if (number > 0) {
-        return 1;
-    } else {
-        return -1;
-    }
-}
 
 
 
