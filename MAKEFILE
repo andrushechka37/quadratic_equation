@@ -2,13 +2,13 @@
 pusk_user: main.o check.o solve.o
 	clang++ main.o check.o solve.o -o test
 
-main.o: main.cpp
+main.o: main.cpp solve.h work_with_coef.h
 	clang++ -c main.cpp
 
-check.o: check.cpp
+check.o: check.cpp solve.h work_with_coef.h testing.h
 	clang++ -c check.cpp
 
-solve.o: solve.cpp
+solve.o: solve.cpp solve.h work_with_coef.h testing.h
 	clang++ -c solve.cpp
 
 
@@ -16,12 +16,12 @@ solve.o: solve.cpp
 pusk_test: main_test.o  solve.o unit_tests.o
 	clang++ main_test.o  solve.o unit_tests.o -o test
 
-main.o: main_test.cpp
+main_test.o: main_test.cpp solve.h work_with_coef.h testing.h
 	clang++ -c main_test.cpp
 
 
-solve.o: solve.cpp
+solve.o: solve.cpp solve.h work_with_coef.h testing.h
 	clang++ -c solve.cpp
 
-solve.o: unit_tests.cpp
+solve.o: unit_tests.cpp solve.h work_with_coef.h testing.h
 	clang++ -c unit_tests.cpp

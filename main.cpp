@@ -3,7 +3,6 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include "solve.h"
-#include "testing.h"
 #include "work_with_coef.h"
 
 int const INFINITE_ROOTS = 999;

@@ -3,6 +3,9 @@
 #include <math.h>
 #include "work_with_coef.h"
 
+
+
+
 int const INFINITE_ROOTS = 999;
 int const NUMBER_OF_TESTS = 12;
 int comparison_for_test(double number);
@@ -16,7 +19,7 @@ void testing_one_case(struct test_case *all_cases, int *count) {
     int nroots;
     solve(all_cases -> coefs, &x1, &x2, &nroots);
     if (comparison_for_test(x1-all_cases -> x1_ref) != 0|| comparison_for_test(x2-all_cases -> x2_ref) != 0 || nroots != all_cases -> nroots_ref) {
-        printf("Calculated: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n  Expected: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n", x1, x2, nroots, all_cases -> x1_ref, all_cases -> x2_ref, all_cases -> nroots_ref);
+        printf("\x1b[31mCalculated: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n  Expected: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n", x1, x2, nroots, all_cases -> x1_ref, all_cases -> x2_ref, all_cases -> nroots_ref);
     } else {
         (*count)++;
     }
@@ -48,7 +51,12 @@ void test_solve(void) {
         for (int i = 0; i<= (NUMBER_OF_TESTS - 1); i++) {
             testing_one_case(&all_cases[i], &right_answer_count);
         }
-        printf("%d/%d correct answers", right_answer_count, NUMBER_OF_TESTS);
+
+        if (right_answer_count == 12) {
+            printf("\x1b[32m%d/%d correct answers", right_answer_count, NUMBER_OF_TESTS);
+            return;
+        }
+        printf("\x1b[31m%d/%d correct answers", right_answer_count, NUMBER_OF_TESTS);
     }
 
 
