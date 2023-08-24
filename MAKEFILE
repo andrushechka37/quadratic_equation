@@ -1,0 +1,27 @@
+
+pusk_user: main.o check.o solve.o
+	clang++ main.o check.o solve.o -o test
+
+main.o: main.cpp
+	clang++ -c main.cpp
+
+check.o: check.cpp
+	clang++ -c check.cpp
+
+solve.o: solve.cpp
+	clang++ -c solve.cpp
+
+
+
+pusk_test: main_test.o  solve.o unit_tests.o
+	clang++ main_test.o  solve.o unit_tests.o -o test
+
+main.o: main_test.cpp
+	clang++ -c main_test.cpp
+
+
+solve.o: solve.cpp
+	clang++ -c solve.cpp
+
+solve.o: unit_tests.cpp
+	clang++ -c unit_tests.cpp

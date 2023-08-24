@@ -91,11 +91,3 @@ void interactively_read_coefficients (double *coefs, bool *error_status) {
 
 
 
-
-
-
-
-
-
-
-

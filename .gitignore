@@ -4,4 +4,4 @@ out.dSYM
 main.dSYM
 main
 test
-unit_tests.cpp
+*.o

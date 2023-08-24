@@ -1,55 +1,46 @@
 #include <stdio.h>
 #include <ctype.h>
-
+#include <math.h>
 
 
 void read_coefficient(double *coef, bool *error_status) {
+
+
     int symbol;
-
-    double number = 0;
     int sign = 1;
-    if ((symbol = getchar()) == '-') {
-        sign = -1;
-    } else if (isdigit(symbol) != 0) { // TODO: can you getc/ungetc
-        number = symbol - '0';
-    } else {
-        *error_status = 1;
-    }
+    int len = 0;
+    double number = 0;
+    int point_counter = 0;
+    bool fraction_trigger = 0;
 
-// TODO: indent
-while ((symbol = getchar()) != '\n' && symbol != '.') { // TODO: extract
-    if (symbol == '-') {
-        *error_status = 1;
-    }
 
-    number = (number * 10) + (symbol - '0');
-    } // TODO: align
-    if (symbol == '\n') { // TODO: what if I enter few spaces before or after?
-        *coef = sign * number;
+    while ((symbol = getc(stdin)) != '\n') {
+
+        len++;
+
+
+        if (symbol == '-' && len == 1) {
+            sign = -1;
+        } else if(symbol == '-' && len != 1) {
+            *error_status = 1;
+        }
+
+        if (symbol == '.') {
+            len = 0;
+            point_counter++;
+            fraction_trigger = 1;
+        }
+
+        if (isdigit(symbol) != 0) {
+            number = (number * 10) + (symbol - '0');
+        }
+
+        if (point_counter == 2)
+            *error_status = 1;
+    }
+    if (fraction_trigger == 1) {
+        *coef = ((sign * number) / pow(10, len));
         return;
     }
-    double power = 1;
-    int point_count = 1;
-    while ((symbol = getchar()) != '\n') { // TODO: extract in a separate function
-        if (symbol == '.')
-            point_count++;
-        if (point_count == 2)
-            *error_status = 1;
-        number = (number * 10) + (symbol - '0');
-
-        power *= 10.0;
-    }
-    *coef = ((sign * number) / power);
+    *coef = (sign * number);
 }
-
-/*int symbol_processing(double *coef, bool *error_status) {
-    int symbol;
-    if ((symbol = getchar()) == '-') {
-        sign = -1;
-    } else {
-        ungetc()
-    }
-    while ((symbol = getc()) != '\n' && symbol != '.')
-}
-
-*/
