@@ -1,6 +1,6 @@
 
 start: main.o check.o solve.o
-	clang++ main.o check.o solve.o -o test
+	clang++ main.o check.o solve.o -o output
 
 main.o: main.cpp solve.h read_coefficient.h
 	clang++ -c main.cpp
@@ -14,11 +14,10 @@ solve.o: solve.cpp solve.h read_coefficient.h testing.h
 
 
 test: main_test.o  solve.o unit_tests.o
-	clang++ main_test.o  solve.o unit_tests.o -o test
+	clang++ main_test.o  solve.o unit_tests.o -o output
 
 main_test.o: main_test.cpp solve.h read_coefficient.h testing.h
 	clang++ -c main_test.cpp
-
 
 solve.o: solve.cpp solve.h read_coefficient.h testing.h
 	clang++ -c solve.cpp
