@@ -8,7 +8,6 @@
 
 
 
-
 int main(int argc, const char *argv[]) {
     // ./solve-equation -a=1 -b=2 -c=3
     // argc = 4
@@ -19,7 +18,16 @@ int main(int argc, const char *argv[]) {
         read_coefficient(argv[j], *error_status);
         argc--;
     }
-    */
+     */
+
+
+
+
+
+
+
+
+
     printf("print a, b, c from ax^2 + bx + c = 0\n");
 
     double coefs[] = {0, 0, 0};
