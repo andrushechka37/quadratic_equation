@@ -23,23 +23,22 @@ int main(int argc, char *argv[]) {
         // enum
 
 
-
     if (argc == 1)
         printf("print a, b, c from ax^2 + bx + c = 0\n");
-    if (work_with_flag(argv, &number_of_coef, argc) == ERROR) {
-        printf("ERROR");
-        return 0;
+    switch (work_with_flag(argv, &number_of_coef, argc)) {
+        case ERROR:
+            printf("ERROR, not enough arguments");
+            return 0;
+        case UNKNOWN_ARGUEMENTS:
+            printf("unknown arguments\n");
+            return 0;
+        case HELP:
+            printf("i am trying to help you, but cant");
+            return 0;
+        case KEYBOARD_INPUT:
+            argc = 1;
+            break;
     }
-    if (work_with_flag(argv, &number_of_coef, argc) == UNKNOWN_ARGUEMENTS) {
-        printf("unknown arguments\n");
-    }
-    if (work_with_flag(argv, &number_of_coef, argc) == HELP) {
-        printf("i am trying to help you, but cant");
-        return 0;
-    }
-    if (work_with_flag(argv, &number_of_coef, argc) == KEYBOARD_INPUT)
-        argc = 1;
-
 
 
 
