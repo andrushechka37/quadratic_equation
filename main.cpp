@@ -5,34 +5,39 @@
 #include "solve.h"
 #include "read_coefficient.h"
 
-
-
 #include <string.h>
+
+const int KEYBOARD_INPUT = 0;
+const int HELP = 2;
+const int COMMAND_LINE_INPUT = 1;
+const int ERROR = -1;
+const int UNKNOWN_ARGUEMENTS = -999;
+
 int main(int argc, char *argv[]) {
     bool error_status = 0;
     int number_of_coef = 1, number_of_symbol = 0;
 
         //TODO: types of error
-        //TODO: flags
-        //TODO: --help
         // remove functions
         // file (flag)
         // enum
 
 
 
-
     if (argc == 1)
         printf("print a, b, c from ax^2 + bx + c = 0\n");
-    if (work_with_flag(argv, &number_of_coef, argc) == -1) {
+    if (work_with_flag(argv, &number_of_coef, argc) == ERROR) {
         printf("ERROR");
         return 0;
     }
-    if (work_with_flag(argv, &number_of_coef, argc) == 2) {
+    if (work_with_flag(argv, &number_of_coef, argc) == UNKNOWN_ARGUEMENTS) {
+        printf("unknown arguments\n");
+    }
+    if (work_with_flag(argv, &number_of_coef, argc) == HELP) {
         printf("i am trying to help you, but cant");
         return 0;
     }
-    if (work_with_flag(argv, &number_of_coef, argc) == 0)
+    if (work_with_flag(argv, &number_of_coef, argc) == KEYBOARD_INPUT)
         argc = 1;
 
 
@@ -85,5 +90,7 @@ void interactively_read_coefficients (double *coefs, bool *error_status, char **
         read_coefficient(coefs + i, error_status, argv, number_of_coef, number_of_symbol, argc);
     }
 }
+
+
 
 
