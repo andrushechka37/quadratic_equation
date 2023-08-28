@@ -51,8 +51,6 @@ double read_double(int *error_code) {
 }*/
 
 void read_coefficient(double *coef, bool *error_status, char **argv, int *a, int *b, int argc) {
-
-
     int symbol = '\0';
     int sign = 1;
     int len = 0;
@@ -80,8 +78,10 @@ void read_coefficient(double *coef, bool *error_status, char **argv, int *a, int
             sign = -1;
             continue;
         }
+
         if (point_counter == 2)
             *error_status = 1;
+
         if (symbol == '.') {
             len = 0;
             point_counter++;
@@ -95,33 +95,31 @@ void read_coefficient(double *coef, bool *error_status, char **argv, int *a, int
         }
 
         *error_status = 1;
-
     }
+
     if (fraction_trigger == 1) {
         *coef = ((sign * number) / pow(10, len));
         return;
     }
     *coef = (sign * number);
 }
-        //TODO: find atof function else
+
+//TODO: find atof function else
 int give_symbols(char **str, int *number_of_coef, int *number_of_symbol) {
     if(str[*number_of_coef][*number_of_symbol] == '\0') {
         (*number_of_coef)++;
         *number_of_symbol = 0;
         return '\0';
     }
+
     *number_of_symbol += 1;
     return str[*number_of_coef][*number_of_symbol - 1];
-
-
 }
 
 
 
 
-int my_getchar(char **str, int *number_of_coef, int *number_of_symbol) {
-    int c;
-    c = getchar();
-    return c;
+inline int my_getchar(char **str, int *number_of_coef, int *number_of_symbol) {
+    return getchar();
 }
 

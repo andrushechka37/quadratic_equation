@@ -10,30 +10,30 @@ double const spec_eps = 1e-3;
 
 int compare_for_test(double number);
 
-
-typedef struct test_case {
+struct test_case {
     double coefs[3];
     const double x1_ref;
     const double x2_ref;
     const int nroots_ref;
-    } test_case;
+};
 
-
-
-int test_one_case(struct test_case *all_cases) {
+int test_one_case(test_case *all_cases) {
     double x1 = 0, x2 = 0;
     int number_of_roots_from_solve = -1;
     solve(all_cases->coefs, &x1, &x2, &number_of_roots_from_solve);
-    if (compare_for_test(x1 - all_cases->x1_ref) != 0|| compare_for_test(x2 - all_cases->x2_ref) != 0 || number_of_roots_from_solve != all_cases->nroots_ref) {
-        printf(RED"\x1b[31mCalculated: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n  Expected: x1 = %.4lf, x2 = %.4lf, number of roots = %d\n", x1, x2, number_of_roots_from_solve, all_cases->x1_ref, all_cases->x2_ref, all_cases->nroots_ref);
+    if (compare_for_test(x1 - all_cases->x1_ref) != 0
+     || compare_for_test(x2 - all_cases->x2_ref) != 0
+     || number_of_roots_from_solve != all_cases->nroots_ref) {
+        printf(RED"\x1b[31mCalculated: x1 = %.4lf, x2 = %.4lf,"
+                  "number of roots = %d\n  Expected: x1 = %.4lf,"
+                  "x2 = %.4lf, number of roots = %d\n",
+                  x1, x2,
+                  number_of_roots_from_solve,
+                  all_cases->x1_ref, all_cases->x2_ref, all_cases->nroots_ref);
         return 0;
     }
     return 1;
 }
-
-
-
-
 
 
 void test_solve(void) {

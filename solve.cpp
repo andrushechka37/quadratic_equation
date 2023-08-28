@@ -5,9 +5,6 @@
 #include "read_coefficient.h"
 
 
-
-
-
 void solve(double coefs[], double *x1, double *x2, int *number_of_roots) {
     if (comparison_with_zero(coefs[0]) == 0) {
         *number_of_roots = solve_linear_equation(coefs, x1);
@@ -16,23 +13,19 @@ void solve(double coefs[], double *x1, double *x2, int *number_of_roots) {
     }
 }
 
-
-
 int solve_quadratic_equation (double coefs[], double *x1, double *x2) {
     double discriminant = coefs[1] * coefs[1] - 4 * coefs[0] * coefs[2];
     if (comparison_with_zero(discriminant) == 0) {
-        *x1 = (double) (-coefs[1] / (2 * coefs[0]));
+        *x1 = (-coefs[1] / (2 * coefs[0]));
         return 1;
     } else if (discriminant < 0) {
         return 0;
     } else {
-        *x1 = (double) (-coefs[1] + sqrt(discriminant)) / (2 * coefs[0]);
-        *x2 = (double) (-coefs[1] - sqrt(discriminant)) / (2 * coefs[0]);
+        *x1 = (-coefs[1] + sqrt(discriminant)) / (2 * coefs[0]);
+        *x2 = (-coefs[1] - sqrt(discriminant)) / (2 * coefs[0]);
         return 2;
     }
 }
-
-
 
 int solve_linear_equation(double coefs[], double *x1) {
     if (comparison_with_zero(coefs[1]) != 0) {
@@ -45,13 +38,9 @@ int solve_linear_equation(double coefs[], double *x1) {
     }
 }
 
-int comparison_with_zero (double number) {
+int comparison_with_zero(double number) {
     double epsilon = 1e-8;
-    if (fabs(number) <= 0)
+    if (fabs(number) <= epsilon)
         return 0;
-    if (number > 0) {
-        return 1;
-    } else {
-        return -1;
-    }
+    return 1;
 }

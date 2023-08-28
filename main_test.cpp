@@ -4,8 +4,6 @@
 #include "read_coefficient.h"
 
 
-
-
 int main(void) {
     test_solve();
 }
