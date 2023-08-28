@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <math.h>
+#include "read_coefficient.h"
 
-/*#define ensure_and_skip(condition)  \
+/*#define ensure_and_skip(condition)\
     ({                              \
         char symbol = getc(stdin);  \
                                     \
@@ -49,8 +50,7 @@ double read_double(int *error_code) {
     return whole + fractional / fraction_pow;
 }*/
 
-
-void read_coefficient(double *coef, bool *error_status) {
+void read_coefficient(double *coef, bool *error_status, char **argv, int *a, int *b, int argc) {
 
 
     int symbol = '\0';
@@ -60,8 +60,18 @@ void read_coefficient(double *coef, bool *error_status) {
     int point_counter = 0;
     bool fraction_trigger = 0;
 
+    //-------------------------
 
-    while ((symbol = getc(stdin)) != '\n') {
+    int (*f1) (char **, int *, int *);
+    if (argc > 1) {
+        f1 = give_symbols;
+    } else {
+        f1 = my_getchar;
+    }
+
+   //---------------------------
+
+    while ((symbol = f1(argv, a, b)) != '\n' && (symbol != '\0')) {
 
         len++;
 
@@ -93,3 +103,25 @@ void read_coefficient(double *coef, bool *error_status) {
     }
     *coef = (sign * number);
 }
+        //TODO: find atof function else
+int give_symbols(char **str, int *number_of_coef, int *number_of_symbol) {
+    if(str[*number_of_coef][*number_of_symbol] == '\0') {
+        (*number_of_coef)++;
+        *number_of_symbol = 0;
+        return '\0';
+    }
+    *number_of_symbol += 1;
+    return str[*number_of_coef][*number_of_symbol - 1];
+
+
+}
+
+
+
+
+int my_getchar(char **str, int *number_of_coef, int *number_of_symbol) {
+    int c;
+    c = getchar();
+    return c;
+}
+

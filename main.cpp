@@ -5,10 +5,7 @@
 #include "solve.h"
 #include "read_coefficient.h"
 
-
-
-
-int main(int argc, const char *argv[]) {
+int main(int argc, char *argv[]) {
     // ./solve-equation -a=1 -b=2 -c=3
     // argc = 4
     // argv[] = { "./solve-equation", "1", "-b=2", "-c=3" }
@@ -20,6 +17,7 @@ int main(int argc, const char *argv[]) {
     }
      */
 
+    int a = 1, b = 0;
 
 
 
@@ -28,10 +26,11 @@ int main(int argc, const char *argv[]) {
 
 
 
-    printf("print a, b, c from ax^2 + bx + c = 0\n");
+    if (argc == 1)
+        printf("print a, b, c from ax^2 + bx + c = 0\n");
 
     double coefs[] = {0, 0, 0};
-    interactively_read_coefficients(coefs, &error_status);
+    interactively_read_coefficients(coefs, &error_status, (char**)argv, &a, &b, argc);
 
     if (error_status == 1) {
         printf("ERROR");
@@ -76,19 +75,15 @@ void print_solution(int number_of_roots, double x1, double x2) {
 
 
 
-void interactively_read_coefficients (double *coefs, bool *error_status) {
+void interactively_read_coefficients (double *coefs, bool *error_status, char **argv, int *a, int *b, int argc) {
     for (int i = 0; i <= 2; i++) {
-	    putchar('a' + i);
-        printf(" = ");
-        read_coefficient(coefs + i, error_status);
+        if (argc == 1) {
+	        putchar('a' + i);
+            printf(" = ");
+        }
+        read_coefficient(coefs + i, error_status, argv, a, b, argc);
     }
 }
-
-
-
-
-
-
 
 
 
