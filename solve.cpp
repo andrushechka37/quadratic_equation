@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "solve.h"
-#include "testing.h"
+#include "unit_tests.h"
 #include "read_coefficient.h"
 
 

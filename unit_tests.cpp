@@ -3,6 +3,7 @@
 #include <math.h>
 #include "read_coefficient.h"
 #include "colours.h"
+#include "unit_tests.h"
 
 #define ARRAY_SIZE(array) (sizeof(array) / sizeof(array[0]))
 

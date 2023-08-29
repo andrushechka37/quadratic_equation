@@ -4,12 +4,14 @@
 #include <stdlib.h>
 #include "solve.h"
 #include "read_coefficient.h"
+#include "unit_tests.h"
 
 int main(int argc, char *argv[]) {
     bool error_status = 0;
     int number_of_coef = 1, number_of_symbol = 0;
         // file (flag)
         // docunmentation
+        // make file запуск
     if (argc == 1)
         printf("print a, b, c from ax^2 + bx + c = 0\n");
 

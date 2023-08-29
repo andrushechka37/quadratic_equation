@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <math.h>
 #include "read_coefficient.h"
+#include "unit_tests.h"
 
 /*#define ensure_and_skip(condition)\
     ({                              \
