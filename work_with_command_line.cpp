@@ -5,7 +5,7 @@
 
 
 
-int work_with_flag(char **argv, int *number_of_coef, int *argc) {
+int work_with_flag(const char **argv, int *number_of_coef, int *argc) {
     if (*argc == 1)
         return KEYBOARD_INPUT;
     if (strcmp(argv[1], "--help") == 0) {
@@ -40,7 +40,7 @@ int work_with_flag(char **argv, int *number_of_coef, int *argc) {
 }
 
 
-int types_of_input(char **argv, int *number_of_coef, int *argc) {
+int types_of_input(const char **argv, int *number_of_coef, int *argc) {
     switch (work_with_flag(argv, number_of_coef, argc)) {
         case ERROR:
             printf("ERROR, not enough arguments");

@@ -5,7 +5,7 @@
 #include "solve.h"
 #include "read_coefficient.h"
 #include <string.h>
-int main(int argc, char *argv[]) {
+int main(int argc,const char *argv[]) {
     bool error_status = 0;
     int number_of_coef = 0, number_of_symbol = 0;
         // file (flag)

@@ -4,53 +4,6 @@
 #include "read_coefficient.h"
 #include "unit_tests.h"
 
-/*#define ensure_and_skip(condition)\
-    ({                              \
-        char symbol = getc(stdin);  \
-                                    \
-        bool parsed = true;         \
-        if (condition)              \
-            ugetc(symbol, stdin);   \
-        else {                      \
-            parsed = false;         \
-        }                           \
-                                    \
-        parsed;                     \
-    });
-
-int read_number(bool *read_any, int *pow = NULL) {
-    int number = 0;
-    while (true) {
-		if (!ensure_and_skip(isdigit(symbol)))
-			break;
-
-		number = 10 * number + (symbol - '0');
-        if (pow) *pow *= 10;
-    }
-
-    return number;
-}
-
-
-double read_double(int *error_code) {
-    int sign = ensure_and_skip_symbol('-') ? -1 : 1;
-
-    bool entered_whole = false;
-    bool entered_fractional = false;
-
-    int whole = read_number(&entered_whole);
-    ensure_and_skip_symbol('.');
-
-    int fraction_pow = 1;
-    int fractional = read_number(&entered_fractional, &fraction_pow);
-
-    if (!entered_whole && !entered_fractional)
-        *error_code = 1;
-
-
-    return whole + fractional / fraction_pow;
-}*/
-
 void read_coefficient(double *coef, bool *error_status, char **argv, int *a, int *b, int argc) {
     int symbol = '\0';
     int sign = 1;
