@@ -54,7 +54,7 @@ int types_of_input(const char **argv, int *number_of_coef, int *argc) {
             printf("     -coef          enter commands from command line like\n");
             printf("                    ./file_name -coef 1 -3 2\n");
             printf("     -file          reads coefs from file named input.txt like\n");
-            printf("     -file          1 -2 3;\n");
+            printf("                    1 -2 3;\n");
             printf("Other commnds will be interpretated as errors\n");
             return 0;
     }

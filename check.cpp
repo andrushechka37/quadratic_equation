@@ -41,7 +41,7 @@
 // }
 
 
-void read_coefficient(double *coef, bool *error_status, const char *argv[], int *a, int *b, int argc) {
+void read_coefficient(double *coef, bool *error_status, const char *argv[], int *number_of_coef, int *number_of_symbol, int argc) {
     int symbol = '\0';
     int sign = 1;
     int len = 0;
@@ -62,7 +62,7 @@ void read_coefficient(double *coef, bool *error_status, const char *argv[], int 
 
    //---------------------------
 
-    while ((symbol = f1(argv, a, b)) != '\n' && (symbol != '\0')) {
+    while ((symbol = f1(argv, number_of_coef, number_of_symbol)) != '\n' && (symbol != '\0')) {
 
         len++;
 
@@ -114,7 +114,7 @@ int give_symbols(const char *str[], int *number_of_coef, int *number_of_symbol) 
 
 inline int my_getchar(const char *str[], int *number_of_coef, int *number_of_symbol) { // to make choise between two functions in
     return getchar();                                                           // read_coefficient possible
-}
+}                                                                               // i know cringe, rewrite
 
 
 void interactively_read_coefficients (double *coefs, bool *error_status, const char *argv[], int *number_of_coef, int *number_of_symbol, int argc) {
@@ -129,16 +129,15 @@ void interactively_read_coefficients (double *coefs, bool *error_status, const c
 
 
 
-int read_file(const char *str[], int *a, int *b) {
+int read_file(const char *str[], int *number_of_coef, int *number_of_symbol) {        // i know cringe, rewrite
     FILE *mf = fopen("input.txt", "r");
     int c = 0;
-    for(int i = 0; i < *a; i++) {
+    for(int i = 0; i < *number_of_coef; i++) {
         c = fgetc(mf);
     }
-    *a += 1;
+    *number_of_coef += 1;
     while ((c = fgetc(mf)) != ';' && c != ' ') {
         return c;
     }
     return '\0';
-
 }

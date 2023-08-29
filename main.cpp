@@ -12,10 +12,11 @@ int main(int argc,const char *argv[]) {
         //TODO: generate makefile
         //TODO: intergate tests
         //TODO: phony in makefile
-        //TODO: -file is very bad, need to completely rewrite
+        //TODO: -file is very bad, need to completely rewrite cringe
         //TODO: rewrite choice between functions in check.cpp cringe
-    if (argc == 1)
+    if (argc == 1) {
         printf("print a, b, c from ax^2 + bx + c = 0\n");
+    }
 
     if (types_of_input(argv, &number_of_coef, &argc) == 0)
         return 0;

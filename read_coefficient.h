@@ -37,7 +37,7 @@ int types_of_input(const char **argv, int *number_of_coef, int *argc);
 /// @returns symbol
 ///
 //----------------------------------------------------------------------------------------------
-int read_file(const char *str[], int *a, int *b);
+int read_file(const char *str[], int *number_of_coef, int *number_of_symbol);
 //----------------------------------------------------------------------------------------------
 /// @brief make the cycle that prints interface
 ///
@@ -49,7 +49,7 @@ int read_file(const char *str[], int *a, int *b);
 /// @param argc
 ///
 //----------------------------------------------------------------------------------------------
-void interactively_read_coefficients (double *coefs, bool *error_status, const char *argv[], int *a, int *b, int argc);
+void interactively_read_coefficients (double *coefs, bool *error_status, const char *argv[], int *number_of_coef, int *number_of_symbol, int argc);
 
 //----------------------------------------------------------------------------------------------
 /// @brief function that read coefficient // TODO: write in imperative
@@ -63,7 +63,7 @@ void interactively_read_coefficients (double *coefs, bool *error_status, const c
 /// @returns number of situation
 ///
 //----------------------------------------------------------------------------------------------
-void read_coefficient(double *coef, bool *error_status, const char *argv[], int *a, int *b, int argc);
+void read_coefficient(double *coef, bool *error_status, const char *argv[], int *number_of_coef, int *number_of_symbol, int argc);
 //----------------------------------------------------------------------------------------------
 /// @brief make the cycle that prints interface // TODO: Write from uppercase letters
 ///
