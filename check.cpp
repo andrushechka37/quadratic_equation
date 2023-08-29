@@ -119,7 +119,17 @@ int give_symbols(char **str, int *number_of_coef, int *number_of_symbol) {
 
 
 
-inline int my_getchar(char **str, int *number_of_coef, int *number_of_symbol) {
-    return getchar();
+inline int my_getchar(char **str, int *number_of_coef, int *number_of_symbol) { // to make choise between two functions in
+    return getchar();                                                           // read_coefficient possible
 }
 
+
+void interactively_read_coefficients (double *coefs, bool *error_status, char **argv, int *number_of_coef, int *number_of_symbol, int argc) {
+    for (int i = 0; i <= 2; i++) {
+        if (argc == 1) {
+	        putchar('a' + i);
+            printf(" = ");
+        }
+        read_coefficient(coefs + i, error_status, argv, number_of_coef, number_of_symbol, argc);
+    }
+}

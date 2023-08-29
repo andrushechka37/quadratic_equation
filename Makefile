@@ -10,7 +10,7 @@ check.o: check.cpp solve.h read_coefficient.h testing.h
 
 solve.o: solve.cpp solve.h read_coefficient.h testing.h
 	clang++ -c solve.cpp
-work_with_command_line.o:
+work_with_command_line.o: work_with_command_line.cpp read_coefficient.h
 	clang++ -c work_with_command_line.cpp
 
 

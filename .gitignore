@@ -4,4 +4,5 @@ out.dSYM
 main.dSYM
 main
 test
+output
 *.o

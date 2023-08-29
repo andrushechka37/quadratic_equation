@@ -44,3 +44,20 @@ int comparison_with_zero(double number) {
         return 0;
     return 1;
 }
+
+void print_solution(int number_of_roots, double x1, double x2) {
+    switch (number_of_roots) {
+        case 0:
+            printf("no valid solutions");
+            break;
+        case 1:
+            printf("x1 = x2 = %.2lf", x1);
+            break;
+        case 2:
+            printf("x1 = %.2lf\nx2 = %.2lf", x1, x2);
+            break;
+        case INFINITE_ROOTS:
+            printf("an infinite number of solutions");
+            break;
+    }
+}
