@@ -52,7 +52,7 @@ int read_file(const char *str[], int *a, int *b);
 void interactively_read_coefficients (double *coefs, bool *error_status, const char *argv[], int *a, int *b, int argc);
 
 //----------------------------------------------------------------------------------------------
-/// @brief function that read coefficient
+/// @brief function that read coefficient // TODO: write in imperative
 ///
 /// @param array of coefficients
 /// @param error_status
@@ -65,7 +65,7 @@ void interactively_read_coefficients (double *coefs, bool *error_status, const c
 //----------------------------------------------------------------------------------------------
 void read_coefficient(double *coef, bool *error_status, const char *argv[], int *a, int *b, int argc);
 //----------------------------------------------------------------------------------------------
-/// @brief make the cycle that prints interface
+/// @brief make the cycle that prints interface // TODO: Write from uppercase letters
 ///
 /// @param number of roots
 /// @param x1
@@ -100,5 +100,7 @@ const int HELP = 2;
 const int COMMAND_LINE_INPUT = 1;
 const int ERROR = -1;
 const int UNKNOWN_ARGUEMENTS = -999;
+
+// TODO: in general, rewrite docs carefully
 
 #endif

@@ -4,6 +4,43 @@
 #include "read_coefficient.h"
 #include "unit_tests.h"
 
+
+// struct string_iterator {
+//     char *buffer;
+//     int current_index;
+// };
+//
+//
+// struct generalized_stream {
+//     char (*getc)(generalized_stream*);
+//
+//     FILE *file;
+//     string_iterator iter;
+// };
+//
+// char string_iterator_getc(generalized_stream *generalized) {
+//     return generalized->iter.buffer[generalized->iter.current_index ++];
+// }
+//
+// char file_getc(generalized *generalized) {
+//     return getc(generalized->file);
+// }
+//
+// generalized_stream from_file(FILE *file) {
+//
+//     return { file_getc, file };
+// }
+//
+// generalized_stream from_string(char *string) {
+//     return { string_iterator_getc, NULL, { string, 0 } };
+// }
+//
+//
+// void read_coefficient(generalized_stream *generalized) {
+//     generalized->getc(generalized);
+// }
+
+
 void read_coefficient(double *coef, bool *error_status, const char *argv[], int *a, int *b, int argc) {
     int symbol = '\0';
     int sign = 1;
@@ -93,9 +130,8 @@ void interactively_read_coefficients (double *coefs, bool *error_status, const c
 
 
 int read_file(const char *str[], int *a, int *b) {
-    FILE *mf;
-    mf = fopen("input.txt", "r");
-    int c;
+    FILE *mf = fopen("input.txt", "r");
+    int c = 0;
     for(int i = 0; i < *a; i++) {
         c = fgetc(mf);
     }

@@ -38,6 +38,7 @@ int test_one_case(test_case *all_cases) {
 
 
 void test_solve(void) {
+    // TODO: make unit tests from file
 
     test_case all_cases[] = {
         {{     0,      0,       0},      0,       0, INFINITE_ROOTS},

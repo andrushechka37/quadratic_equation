@@ -38,7 +38,7 @@ int solve_linear_equation(double coefs[], double *x1) {
     }
 }
 
-int comparison_with_zero(double number) {
+int comparison_with_zero(double number) { // TODO: make static
     double epsilon = 1e-8;
     if (fabs(number) <= epsilon)
         return 0;
