@@ -5,14 +5,18 @@
 
 
 
-int work_with_flag(char **argv, int *number_of_coef, int argc) {
-    if (argc == 1)
+int work_with_flag(char **argv, int *number_of_coef, int *argc) {
+    if (*argc == 1)
         return KEYBOARD_INPUT;
     if (strcmp(argv[1], "--help") == 0) {
         return HELP;
     }
+    if (strcmp(argv[1], "-file") == 0) {
+        *argc = 2;
+        return 1;
+    }
     int count = 0;
-    for (int i = 1; i < argc; i++) {
+    for (int i = 1; i < *argc; i++) {
         if (strcmp(argv[i], "-coef") == 0) {
             i += 4;
         } else {
@@ -22,9 +26,9 @@ int work_with_flag(char **argv, int *number_of_coef, int argc) {
     }
     if (count != 0)
         return UNKNOWN_ARGUEMENTS;
-    for (int i = 1; i < argc; i++) {
+    for (int i = 1; i < *argc; i++) {
         if (strcmp(argv[i], "-coef") == 0) {
-            if (argc >= (i+4)) {
+            if (*argc >= (i+4)) {
                 *number_of_coef = i+1;
                 return COMMAND_LINE_INPUT;
             } else {
@@ -36,7 +40,7 @@ int work_with_flag(char **argv, int *number_of_coef, int argc) {
 }
 
 
-int types_of_input(char **argv, int *number_of_coef, int argc) {
+int types_of_input(char **argv, int *number_of_coef, int *argc) {
     switch (work_with_flag(argv, number_of_coef, argc)) {
         case ERROR:
             printf("ERROR, not enough arguments");
@@ -47,12 +51,12 @@ int types_of_input(char **argv, int *number_of_coef, int argc) {
         case HELP:
             printf("These are common commands used in various situations:\n");
             printf("    --help          menu of commands\n");
-            printf("     -coef          enter commands from command line\n");
+            printf("     -coef          enter commands from command line like\n");
+            printf("                    ./file_name -coef 1 -3 2\n");
+            printf("     -file          reads coefs from file named input.txt like\n");
+            printf("     -file          1 -2 3;\n");
             printf("Other commnds will be interpretated as errors\n");
             return 0;
-        case KEYBOARD_INPUT:
-            argc = 1;
-            break;
     }
     return 1;
 }

@@ -62,7 +62,9 @@ void read_coefficient(double *coef, bool *error_status, char **argv, int *a, int
     //-------------------------
 
     int (*f1) (char **, int *, int *);
-    if (argc > 1) {
+    if (argc == 2) {
+        f1 = read_file;
+    } else if (argc > 1){
         f1 = give_symbols;
     } else {
         f1 = my_getchar;
@@ -133,4 +135,21 @@ void interactively_read_coefficients (double *coefs, bool *error_status, char **
         }
         read_coefficient(coefs + i, error_status, argv, number_of_coef, number_of_symbol, argc);
     }
+}
+
+
+
+int read_file(char **str, int *a, int *b) {
+    FILE *mf;
+    mf = fopen("input.txt", "r");
+    int c;
+    for(int i = 0; i < *a; i++) {
+        c = fgetc(mf);
+    }
+    *a += 1;
+    while ((c = fgetc(mf)) != ';' && c != ' ') {
+        return c;
+    }
+    return '\0';
+
 }

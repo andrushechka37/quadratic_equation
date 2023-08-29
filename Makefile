@@ -17,6 +17,7 @@ work_with_command_line.o: work_with_command_line.cpp read_coefficient.h
 
 test: main_test.o  solve.o unit_tests.o
 	clang++ main_test.o  solve.o unit_tests.o -o output
+	./output
 
 main_test.o: main_test.cpp solve.h read_coefficient.h unit_tests.h
 	clang++ -c main_test.cpp
