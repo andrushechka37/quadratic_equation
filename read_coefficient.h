@@ -37,7 +37,7 @@ int types_of_input(const char **argv, int *number_of_coef, int *argc);
 /// @returns symbol
 ///
 //----------------------------------------------------------------------------------------------
-int read_file(char **str, int *a, int *b);
+int read_file(const char *str[], int *a, int *b);
 //----------------------------------------------------------------------------------------------
 /// @brief make the cycle that prints interface
 ///
@@ -49,7 +49,7 @@ int read_file(char **str, int *a, int *b);
 /// @param argc
 ///
 //----------------------------------------------------------------------------------------------
-void interactively_read_coefficients (double *coefs, bool *error_status, char **argv, int *a, int *b, int argc);
+void interactively_read_coefficients (double *coefs, bool *error_status, const char *argv[], int *a, int *b, int argc);
 
 //----------------------------------------------------------------------------------------------
 /// @brief function that read coefficient
@@ -63,7 +63,7 @@ void interactively_read_coefficients (double *coefs, bool *error_status, char **
 /// @returns number of situation
 ///
 //----------------------------------------------------------------------------------------------
-void read_coefficient(double *coef, bool *error_status, char **argv, int *a, int *b, int argc);
+void read_coefficient(double *coef, bool *error_status, const char *argv[], int *a, int *b, int argc);
 //----------------------------------------------------------------------------------------------
 /// @brief make the cycle that prints interface
 ///
@@ -83,7 +83,7 @@ void print_solution(int number_of_roots, double x1, double x2);
 /// @returns symbol
 ///
 //----------------------------------------------------------------------------------------------
-int give_symbols(char **str, int *number_of_coef, int *number_of_symbol);
+int give_symbols(const char *str[], int *number_of_coef, int *number_of_symbol);
 //----------------------------------------------------------------------------------------------
 /// @brief gets symbols from stdin
 ///
@@ -93,7 +93,7 @@ int give_symbols(char **str, int *number_of_coef, int *number_of_symbol);
 /// @returns symbol
 ///
 //----------------------------------------------------------------------------------------------
-int my_getchar(char **str, int *number_of_coef, int *number_of_symbol);
+int my_getchar(const char *str[], int *number_of_coef, int *number_of_symbol);
 
 const int KEYBOARD_INPUT = 0;
 const int HELP = 2;

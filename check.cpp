@@ -4,7 +4,7 @@
 #include "read_coefficient.h"
 #include "unit_tests.h"
 
-void read_coefficient(double *coef, bool *error_status, char **argv, int *a, int *b, int argc) {
+void read_coefficient(double *coef, bool *error_status, const char *argv[], int *a, int *b, int argc) {
     int symbol = '\0';
     int sign = 1;
     int len = 0;
@@ -14,7 +14,7 @@ void read_coefficient(double *coef, bool *error_status, char **argv, int *a, int
 
     //-------------------------
 
-    int (*f1) (char **, int *, int *);
+    int (*f1) (const char **, int *, int *);
     if (argc == 2) {
         f1 = read_file;
     } else if (argc > 1){
@@ -61,7 +61,7 @@ void read_coefficient(double *coef, bool *error_status, char **argv, int *a, int
 }
 
 //TODO: find atof function else
-int give_symbols(char **str, int *number_of_coef, int *number_of_symbol) {
+int give_symbols(const char *str[], int *number_of_coef, int *number_of_symbol) {
     if(str[*number_of_coef][*number_of_symbol] == '\0') {
         (*number_of_coef)++;
         *number_of_symbol = 0;
@@ -75,12 +75,12 @@ int give_symbols(char **str, int *number_of_coef, int *number_of_symbol) {
 
 
 
-inline int my_getchar(char **str, int *number_of_coef, int *number_of_symbol) { // to make choise between two functions in
+inline int my_getchar(const char *str[], int *number_of_coef, int *number_of_symbol) { // to make choise between two functions in
     return getchar();                                                           // read_coefficient possible
 }
 
 
-void interactively_read_coefficients (double *coefs, bool *error_status, char **argv, int *number_of_coef, int *number_of_symbol, int argc) {
+void interactively_read_coefficients (double *coefs, bool *error_status, const char *argv[], int *number_of_coef, int *number_of_symbol, int argc) {
     for (int i = 0; i <= 2; i++) {
         if (argc == 1) {
 	        putchar('a' + i);
@@ -92,7 +92,7 @@ void interactively_read_coefficients (double *coefs, bool *error_status, char **
 
 
 
-int read_file(char **str, int *a, int *b) {
+int read_file(const char *str[], int *a, int *b) {
     FILE *mf;
     mf = fopen("input.txt", "r");
     int c;

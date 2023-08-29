@@ -11,6 +11,8 @@ int main(int argc,const char *argv[]) {
         // file (flag)
         // docunmentation
         // enum
+        //TODO: gennerate
+        // intergate tests
     if (argc == 1)
         printf("print a, b, c from ax^2 + bx + c = 0\n");
 
@@ -18,7 +20,7 @@ int main(int argc,const char *argv[]) {
         return 0;
 
     double coefs[] = {0, 0, 0};
-    interactively_read_coefficients(coefs, &error_status, (char**)argv, &number_of_coef, &number_of_symbol, argc);
+    interactively_read_coefficients(coefs, &error_status, argv, &number_of_coef, &number_of_symbol, argc);
 
     if (error_status == 1) {
         printf("INCORRECT INPUT");
